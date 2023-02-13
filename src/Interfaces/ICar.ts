@@ -5,6 +5,6 @@ export default interface ICar {
   color: string;
   status: boolean;
   buyValue: number;
-  doorQty: number;
+  doorsQty: number;
   seatsQty: number;
 }

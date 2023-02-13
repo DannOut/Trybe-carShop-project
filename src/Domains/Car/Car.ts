@@ -1,8 +1,8 @@
 import ICar from '../../Interfaces/ICar';
-import AbstractAuto from '../Vehicle/Vehicle';
+import Vehicle from '../Vehicle/Vehicle';
 
-export default class Car extends AbstractAuto {
-  private _doorQty: number;
+export default class Car extends Vehicle {
+  private _doorsQty: number;
   private _seatsQty: number;
 
   constructor({
@@ -12,11 +12,11 @@ export default class Car extends AbstractAuto {
     color,
     status,
     buyValue,
-    doorQty,
+    doorsQty,
     seatsQty,
   }: ICar) {
     super({ id, model, year, color, status, buyValue });
-    this._doorQty = doorQty;
+    this._doorsQty = doorsQty;
     this._seatsQty = seatsQty;
   }
 
@@ -28,9 +28,9 @@ export default class Car extends AbstractAuto {
   }
 
   public get doorQty(): number {
-    return this._doorQty;
+    return this._doorsQty;
   }
   public set doorQty(value: number) {
-    this._doorQty = value;
+    this._doorsQty = value;
   }
 }
