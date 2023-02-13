@@ -11,7 +11,16 @@ export default abstract class AbstractODM<T> {
     this.model = models[this.modelName] || model(this.modelName, this.schema);
   }
 
-  public async create(obj: T): Promise<T> {
-    return this.model.create({ ...obj });
+  public async create(key: T): Promise<T> {
+    return this.model.create({ ...key });
+  }
+
+  public async findAll(): Promise<T[]> {
+    return this.model.find();
+  }
+
+  public async findById(_id: string): Promise<T | null> {
+    const teste = await this.model.findOne({ _id });
+    return teste;
   }
 }

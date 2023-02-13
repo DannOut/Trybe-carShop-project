@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+// import ErrorHandler from '../Helpers/ErrorHandler';
 import ICar from '../Interfaces/ICar';
 import CarService from '../Services/Car.Service';
 
@@ -27,8 +28,22 @@ export default class CarController {
     };
     try {
       const createCar = await this._service.create(newCar);
-      // console.log('createCar :>> ', createCar);
       return this._res.status(201).json(createCar);
+    } catch (e) {
+      this.next(e);
+    }
+  }
+
+  public async findAll() {
+    const findAllCars = await this._service.findAll();
+    return this._res.status(200).json(findAllCars);
+  }
+
+  public async findById() {
+    try {
+      const { id } = this._req.params;
+      const findCarById = await this._service.findById(id);
+      return this._res.status(200).json(findCarById);
     } catch (e) {
       this.next(e);
     }

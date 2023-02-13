@@ -1,5 +1,5 @@
-// import Car from "../Domains/Car/Car";
 import Car from '../Domains/Car';
+import ErrorHandler from '../Helpers/ErrorHandler';
 import ICar from '../Interfaces/ICar';
 import CarODM from '../Models/CarODM.model';
 
@@ -14,5 +14,19 @@ export default class CarService {
     const carODM = new CarODM();
     const newCar = await carODM.create(car);
     return this.createCarDomain(newCar);
+  }
+
+  public async findAll() {
+    const carODM = new CarODM();
+    const listAllCar = await carODM.findAll();
+    const carsArray = listAllCar.map((car) => this.createCarDomain(car));
+    return carsArray;
+  }
+
+  public async findById(id: string): Promise<Car | null> {
+    const carODM = new CarODM();
+    const findCarById = await carODM.findById(id);
+    if (!findCarById) throw new ErrorHandler(404, 'Car not found');
+    return this.createCarDomain(findCarById);
   }
 }
