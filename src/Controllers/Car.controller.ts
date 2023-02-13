@@ -27,6 +27,7 @@ export default class CarController {
     };
     try {
       const createCar = await this._service.create(newCar);
+      // console.log('createCar :>> ', createCar);
       return this._res.status(201).json(createCar);
     } catch (e) {
       this.next(e);
