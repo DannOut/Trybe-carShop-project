@@ -39,7 +39,7 @@ describe('Usuário é capaz de realizar CRUD de moto', function () {
 
   it('Retorna Erro ao buscar com id inválido', async function () {
     Sinon.stub(Model, 'findOne').throws(
-      new ErrorHandler(404, 'Motorcycle not found')
+      new ErrorHandler(404, 'Motorcycle not found'),
     );
     try {
       const motoService = new MotorcycleService();
