@@ -25,6 +25,7 @@ export default abstract class AbstractODM<T> {
   }
 
   public async update(_id: string, info: T): Promise<T | null> {
+    // https://mongoosejs.com/docs/api.html#model_Model-findOneAndUpdate
     const value = await this.model.findByIdAndUpdate(
       { _id },
       { ...info } as UpdateQuery<T>,
