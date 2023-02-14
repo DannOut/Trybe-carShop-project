@@ -11,5 +11,10 @@ routes.get(
   validateId,
   (req, res, next) => new CarController(req, res, next).findById(),
 );
+routes.put(
+  '/cars/:id',
+  validateId,
+  (req, res, next) => new CarController(req, res, next).update(),
+);
 
 export default routes;
