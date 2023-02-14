@@ -9,9 +9,9 @@ import {
   invalidId,
   mockedArrayCars,
   validId,
-} from '../../Mocks/Car.mock.create';
+} from '../../Mocks/Car.mock';
 
-describe('Usuário é capaz de registrar um carro', function () {
+describe('Usuário é capaz de realizar CRUD de um carro', function () {
   afterEach(function () {
     sinon.restore();
   });
@@ -38,13 +38,13 @@ describe('Usuário é capaz de registrar um carro', function () {
     expect(result).to.be.deep.equal(carOutput);
   });
 
-  it('Retorna Fala ao buscar com id inválido', async function () {
+  it('Retorna Erro ao buscar com id inválido', async function () {
     sinon.stub(Model, 'findOne').throws(new ErrorHandler(404, 'Car not found'));
     try {
       const carService = new CarService();
       carService.findById(invalidId);
-    } catch (error) {
-      expect(error as ErrorHandler).to.be.deep.equal({ Error: 'Car not found' });
+    } catch (e) {
+      expect(e as ErrorHandler).to.be.deep.equal({ Error: 'Car not found' });
     }
   });
 });
