@@ -24,6 +24,7 @@ export default abstract class AbstractODM<T> {
     return value;
   }
 
+  // prettier-ignore
   public async update(_id: string, info: T): Promise<T | null> {
     // https://mongoosejs.com/docs/api.html#model_Model-findOneAndUpdate
     const value = await this.model.findByIdAndUpdate(
@@ -31,6 +32,11 @@ export default abstract class AbstractODM<T> {
       { ...info } as UpdateQuery<T>,
       { new: true },
     );
+    return value;
+  }
+
+  public async remove(_id: string) {
+    const value = await this.model.findByIdAndDelete({ _id });
     return value;
   }
 }
