@@ -35,7 +35,7 @@ export default abstract class AbstractController<T> {
       const data = await this._service.findById(id);
       return this._res.status(200).json(data);
     } catch (e) {
-      this.next();
+      this.next(e);
     }
   }
 

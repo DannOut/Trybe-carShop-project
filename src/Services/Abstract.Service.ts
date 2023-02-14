@@ -26,7 +26,7 @@ export default abstract class AbstractService<T> {
 
   public async create(vehicle: T): Promise<Vehicle | null> {
     const teste = ChooseVehicle.createDomain<T>(this.vehicle, vehicle);
-    const created = await this.serviceODM.create(teste as T);
+    const created = await this.serviceODM.create(teste as unknown as T);
     return ChooseVehicle.createDomain<T>(this.vehicle, created);
   }
 
