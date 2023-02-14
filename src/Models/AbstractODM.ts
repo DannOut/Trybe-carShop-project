@@ -20,8 +20,8 @@ export default abstract class AbstractODM<T> {
   }
 
   public async findById(_id: string): Promise<T | null> {
-    const teste = await this.model.findOne({ _id });
-    return teste;
+    const value = await this.model.findOne({ _id });
+    return value;
   }
 
   public async update(_id: string, info: T): Promise<T | null> {
