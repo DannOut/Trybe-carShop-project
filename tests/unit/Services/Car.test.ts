@@ -47,4 +47,11 @@ describe('Usuário é capaz de realizar CRUD de um carro', function () {
       expect(e as ErrorHandler).to.be.deep.equal({ Error: 'Car not found' });
     }
   });
+
+  it('Retorna informação do carro atualizado', async function () {
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(carOutput);
+    const carService = new CarService();
+    const result = await carService.update(validId, carBody);
+    expect(result).to.be.deep.equal(carOutput);
+  });
 });

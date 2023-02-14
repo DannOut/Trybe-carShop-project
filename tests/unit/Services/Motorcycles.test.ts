@@ -50,4 +50,11 @@ describe('Usuário é capaz de realizar CRUD de moto', function () {
       });
     }
   });
+
+  it('Retorna informação da moto atualizada', async function () {
+    Sinon.stub(Model, 'findByIdAndUpdate').resolves(motoOutput);
+    const motoService = new MotorcycleService();
+    const result = await motoService.update(validId, motoBody);
+    expect(result).to.be.deep.equal(motoOutput);
+  });
 });
